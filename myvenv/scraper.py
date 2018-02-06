@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-
+from selenium.common.exceptions import StaleElementReferenceException
 
 url = 'http://procurement.atlantaga.gov/solicitations/'
 
@@ -33,6 +33,9 @@ except TimeoutException:
 #box = driver.find_element_by_xpath('//*[@id="project-more-info-link"]')
 box = driver.find_element_by_xpath('//*[@id="project-solicitations"]')
 options = box.find_elements_by_tag_name('option')
+delay = 20
+
+LinkList = []
 for option in options:
     try:
         element = WebDriverWait(driver, delay).until(EC.visibility_of_element_located(
@@ -41,11 +44,20 @@ for option in options:
         element = WebDriverWait(driver, delay).until(EC.visibility_of_element_located(
             (By.XPATH, '//*[@id="project-more-info-link"]')))
         div = driver.find_element_by_id('project-more-info-link')
-        print div.find_element_by_css_selector('a').get_attribute('href')
-    except TimeoutException:
-        print "Failed"
-    
-   
+        link = div.find_element_by_css_selector('a').get_attribute('href')
+        LinkList.append(link)
+    except (TimeoutException, StaleElementReferenceException):
+        pass
+
+
+for url in LinkList:
+    response = requests.get(url)
+    html = response.content
+    soup = BeautifulSoup(html, 'html.parser')
+    print soup.prettify()
+
+
+
 
 '''
 box = driver.find_element_by_xpath('//*[@id="project-solicitations"]')
