@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import StaleElementReferenceException
 
+
 url = 'http://procurement.atlantaga.gov/solicitations/'
 
 
@@ -50,13 +51,23 @@ for option in options:
         pass
 
 
-for url in LinkList:
+
+with open('services_urls.txt', 'w+') as f:
+    for url in LinkList:
+        f.write('\n'.join(LinkList))
+
+
+'''
     response = requests.get(url)
     html = response.content
     soup = BeautifulSoup(html, 'html.parser')
-    print soup.prettify()
+    #print soup.prettify()
 
+    content = soup.find_all("div", {"class": "page-content"})
 
+    for div in content:
+        print div
+''' 
 
 
 '''
@@ -108,4 +119,5 @@ if option value is not blank:
         capture new URL and save it to a list
 run URLs in list through function to scrape data? (may not need SE for that partt)
 
+turn titles or <h2> into dict keys?
 """
