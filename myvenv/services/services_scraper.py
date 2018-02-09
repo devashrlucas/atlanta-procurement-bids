@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+import simplejson as json
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -8,7 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import StaleElementReferenceException
 
-
+'''   DONE --- LEAVE THIS ALONE
 url = 'http://procurement.atlantaga.gov/solicitations/'
 
 
@@ -51,10 +52,62 @@ for option in options:
         pass
 
 
-
+# MAY HAVE TO CHANGE THIS LATER
 with open('services_urls.txt', 'w+') as f:
     for url in LinkList:
         f.write('\n'.join(LinkList))
+    f.close()
+'''
+
+
+with open('services_urls.txt', 'r') as f:
+    #lines = f.readlines()
+    for line in f:
+        response = requests.get(line)
+        html = response.content
+        soup = BeautifulSoup(html, 'lxml')
+        
+        
+       
+        divs = soup.find_all('div')
+        #content = soup.find_all('div', {'class': 'page-content'})
+        form_content = soup.find_all('div', {'class': 'ninja-forms-cont'})
+        footer_content = soup.find_all('footer', attrs={'class': 'site-footer'})
+        disclaimer_content = soup.find_all('div', {'class': 'disclaimer'})
+        modal_content = soup.find_all('div', {'class': 'modal-content'})
+        wrapper_content = soup.find_all('div', {'class': 'wrapper'})
+
+        for item in divs:
+            #print item.get('class', '')
+            #rint "----------------"
+            if item.get('class', '') == ['modal-content']:
+                print item
+       
+       
+
+
+            #title = soup.find_all('h1')
+            #dict_keys = soup.find_all('h2')
+            #print text
+            #print title, dict_keys
+           # print item
+           # print '------------------------'
+              
+
+     
+            #.page - content > div: nth - child(1) > div: nth - child(2) > p: nth - child(24)
+
+############### NEED TEXT THAT ISN'T IN FOOT OR DISCLAIMER 
+################# MAYBE IT DEPENDS ON HOW IT"S LOADED IN? AJAX? JSON? JS? JQUERY? I DON'T KNOW      
+        
+
+'''
+#text = soup.find_all('p') NOT QUITE, ALSO RETURNS GREY TEXT (class="site-footer")
+for item in soup:
+    #print title, dict_keys, text
+    print item
+    print "--------------------------"
+'''
 
 
 '''
@@ -120,4 +173,8 @@ if option value is not blank:
 run URLs in list through function to scrape data? (may not need SE for that partt)
 
 turn titles or <h2> into dict keys?
+actual text is <p> but also using <p> blank for formatting
+some of the text is #text w/o any tags or other CSS
+proposal documemnts are <ul> or <li> and links(?)
+
 """
