@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from bs4 import NavigableString
 import requests
 import simplejson as json
 
@@ -70,18 +71,53 @@ with open('services_urls.txt', 'r') as f:
         
        
         divs = soup.find_all('div')
+        paragraphs = soup.find_all('p')
+        footers = soup.find_all('footer')
+
         #content = soup.find_all('div', {'class': 'page-content'})
-        form_content = soup.find_all('div', {'class': 'ninja-forms-cont'})
-        footer_content = soup.find_all('footer', attrs={'class': 'site-footer'})
-        disclaimer_content = soup.find_all('div', {'class': 'disclaimer'})
+        #form_content = soup.find_all('div', {'class': 'ninja-forms-cont'})
+        #footer_content = soup.find_all('footer', attrs={'class': 'site-footer'})
+       # disclaimer_content = soup.find_all('div', {'class': 'disclaimer'})
         modal_content = soup.find_all('div', {'class': 'modal-content'})
         wrapper_content = soup.find_all('div', {'class': 'wrapper'})
 
-        for item in divs:
+        for d in divs:
             #print item.get('class', '')
             #rint "----------------"
-            if item.get('class', '') == ['modal-content']:
-                print item
+            if d.get('class', '') == ['modal-body']:
+                modal_body = [d]
+            if d.get('class', '') == ['ninja-forms-cont']:
+                form_content = [d]
+        for p in paragraphs:
+            if p.get('class', '') == ['disclaimer']:
+                disclaimer =  [p]
+        for f in footers:
+            if f.get('class', '') == ['site-footer']:
+                footer = [f]
+        '''
+        for item in soup:
+            for div in divs:
+                for d in div:
+                    if d.get('class', '') == ['bs4.element.Tag']:
+                        print type(d)
+                        print d
+                        print '---------'
+                    #if d.get('class','') == footer:
+                        #print d
+                       # print '---------'
+        '''
+
+        body = soup.find('body')
+        
+        
+        for body_child in body.findChildren():
+            if isinstance(body_child, NavigableString):
+                continue
+            else:
+                print body_child
+                print '------------'
+           
+
        
        
 
