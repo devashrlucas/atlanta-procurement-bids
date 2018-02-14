@@ -121,7 +121,38 @@ with open('services_urls.txt', 'r') as f:
         #print full_item
         #print '---------------'
                 for item in full_item:
-                    if item.name == 'a':
+                    if item.name == 'header':
+                        pass
+                    elif item.name == 'div':
+                        if item.get('class', '') == ['wrapper']:
+                            pass
+                    elif item.name == 'a':
+                        pass
+                    elif item.name == 'nav':
+                        pass
+                    elif item.name == 'svg':
+                        pass
+                    elif item.name == 'path':
+                        pass
+                    elif item.name == 'br':
+                        pass
+                    elif item.name == 'script':
+                        pass
+                    elif item.name == 'strong':
+                        pass
+                    elif item.name == 'iframe':
+                        pass
+                    elif item.name == 'label':
+                        pass
+                    elif item.name == 'form':
+                        pass
+                    elif item.name == 'input':
+                        pass
+                    elif item.name == 'span':
+                        pass
+                    elif item.name == 'option':
+                        pass
+                    elif item.name == 'select':
                         pass
                     else:
                         print item.name
