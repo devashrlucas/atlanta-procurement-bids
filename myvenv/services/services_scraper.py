@@ -110,6 +110,7 @@ with open('services_urls.txt', 'r') as f:
         divs = soup.find('div')
         
         full_item = []
+        filtered_item = []
 
         for item in soup:
             for body_child in body.findChildren():
@@ -119,16 +120,33 @@ with open('services_urls.txt', 'r') as f:
                     full_item.append(body_child)
         #print full_item
         #print '---------------'
+                for item in full_item:
+                    if item.name == 'a':
+                        pass
+                    else:
+                        print item.name
+                        print item
+                        print '================'
 
+'''
+                for entry in item:
+                    filter(lambda entry: entry.get(
+                        'class', '') != ['modal-footer'], full_item)
+                    print full_item
+'''
+'''
             for item in full_item:
                 for entry in item:
                     if item.get('class', '') == ['modal-footer']:
-                        pass
+                        filter(lambda entry: entry.get(
+                            'class', '') != ['modal-footer'], full_item)
                     else:
                         print entry
                         print '============================'
             print "##############"
+'''
 
+        
 
 
         #if div.get('class', '') == div.get('class', 'modal-footer'):
