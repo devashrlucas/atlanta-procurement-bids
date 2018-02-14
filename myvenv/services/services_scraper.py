@@ -1,5 +1,4 @@
-from bs4 import BeautifulSoup
-from bs4 import NavigableString
+from bs4 import BeautifulSoup, NavigableString
 import requests
 import simplejson as json
 
@@ -107,19 +106,33 @@ with open('services_urls.txt', 'r') as f:
                        # print '---------'
         '''
 
-        body = soup.find('body')
+        body = soup.find('body') #returns list of NavigableStrings, cannot 'get' NS
+        divs = soup.find('div')
         
-        
-        for body_child in body.findChildren():
-            if isinstance(body_child, NavigableString):
-                continue
-            else:
-                print body_child
-                print '------------'
-           
+        full_item = []
 
-       
-       
+        for item in soup:
+            for body_child in body.findChildren():
+                if isinstance(body_child, NavigableString):
+                    continue
+                else:
+                    full_item.append(body_child)
+        #print full_item
+        #print '---------------'
+
+            for item in full_item:
+                for entry in item:
+                    if item.get('class', '') == ['modal-footer']:
+                        pass
+                    else:
+                        print entry
+                        print '============================'
+            print "##############"
+
+
+
+        #if div.get('class', '') == div.get('class', 'modal-footer'):
+                   # continue
 
 
             #title = soup.find_all('h1')
