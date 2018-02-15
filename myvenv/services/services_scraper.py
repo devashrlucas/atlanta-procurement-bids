@@ -135,13 +135,13 @@ for url in urls:
                 pass 
             elif body_child.name == 'li':
                 for entry in body_child:
-                    if entry.name == 'a':
-                        print entry.name
+                    if entry.name == 'a' and entry['href'] == 'https://twitter.com/atlprocurement':
+                        pass
+                    else:
                         print entry
-                        print '~~~~~~~~'
             else:
                 #print body_child.name
-                #print body_child
+                print body_child
                 print '######'
             
 
