@@ -79,9 +79,45 @@ for url in urls:
         for body_child in body.findChildren():
             if isinstance(body_child, NavigableString):
                 pass
+            elif body_child.name == 'header':
+                pass
+            elif body_child.name == 'div':
+                if body_child.get('class', '') == ['wrapper']:
+                    pass
+            elif body_child.name == 'a':
+                pass
+            elif body_child.name == 'nav':
+                pass
+            elif body_child.name == 'svg':
+                pass
+            elif body_child.name == 'path':
+                pass
+            elif body_child.name == 'br':
+                pass
+            elif body_child.name == 'script':
+                pass
+            elif body_child.name == 'strong':
+                pass
+            elif body_child.name == 'iframe':
+                pass
+            elif body_child.name == 'label':
+                pass
+            elif body_child.name == 'form':
+                pass
+            elif body_child.name == 'input':
+                pass
+            elif body_child.name == 'span':
+                pass
+            elif body_child.name == 'option':
+                pass
+            elif body_child.name == 'svg':
+                pass
+            elif body_child.name == 'select':
+                pass
             else:
+                print body_child.name
                 print body_child
-                print '############'
+                print '######'
 
 '''
                 full_item.append(body_child)
