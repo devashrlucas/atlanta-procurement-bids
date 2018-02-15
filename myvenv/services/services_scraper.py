@@ -134,12 +134,14 @@ for url in urls:
             elif body_child in body.select('.contact-list'):
                 pass 
             elif body_child.name == 'li':
-                for item in body_child:
-                    if item.name == 'a':
-                        pass       
+                for entry in body_child:
+                    if entry.name == 'a':
+                        print entry.name
+                        print entry
+                        print '~~~~~~~~'
             else:
-                print body_child.name
-                print body_child
+                #print body_child.name
+                #print body_child
                 print '######'
             
 
