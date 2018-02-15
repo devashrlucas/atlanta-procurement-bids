@@ -137,61 +137,24 @@ for url in urls:
                 for entry in body_child:
                     if entry.name == 'a' and entry['href'] == 'https://twitter.com/atlprocurement':
                         pass
+                    elif entry.name == 'a' and 'https://na01.safelinks.protection.outlook.com' in entry['href']:
+                        pass
+                    else:
+                        print entry
+            elif body_child.name == 'p':
+                for entry in body_child:
+                    if entry.get('class', '') == 'text':
+                        pass
                     else:
                         print entry
             else:
-                #print body_child.name
+                print body_child.name
                 print body_child
                 print '######'
             
-
-'''
-                full_item.append(body_child)
-    #print full_item
-    #print '---------------'
-        print full_item
-        print '######'
-        for entry in full_item:
-            if entry.name == 'header':
-                pass
-            elif entry.name == 'div':
-                if entry.get('class', '') == ['wrapper']:
-                    pass
-            elif entry.name == 'a':
-                pass
-            elif entry.name == 'nav':
-                pass
-            elif entry.name == 'svg':
-                pass
-            elif entry.name == 'path':
-                pass
-            elif entry.name == 'br':
-                pass
-            elif entry.name == 'script':
-                pass
-            elif entry.name == 'strong':
-                pass
-            elif entry.name == 'iframe':
-                pass
-            elif entry.name == 'label':
-                pass
-            elif entry.name == 'form':
-                pass
-            elif entry.name == 'input':
-                pass
-            elif entry.name == 'span':
-                pass
-            elif entry.name == 'option':
-                pass
-            elif entry.name == 'svg':
-                pass
-            elif entry.name == 'select':
-                pass
-            else:
-                #print entry
-                #print '######'
- '''       
-
+#### need to deal with if item in body_child.find_all('strong') ####
+        
+            
 
 '''
             for entry in item:
