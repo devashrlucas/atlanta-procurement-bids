@@ -59,138 +59,110 @@ with open('services_urls.txt', 'w+') as f:
     f.close()
 '''
 
+full_item = []
+filtered_item = []
 
-with open('services_urls.txt', 'r') as f:
-    #lines = f.readlines()
-    for line in f:
-        response = requests.get(line)
-        html = response.content
-        soup = BeautifulSoup(html, 'lxml')
-        
-        
-       
-        divs = soup.find_all('div')
-        paragraphs = soup.find_all('p')
-        footers = soup.find_all('footer')
 
-        #content = soup.find_all('div', {'class': 'page-content'})
-        #form_content = soup.find_all('div', {'class': 'ninja-forms-cont'})
-        #footer_content = soup.find_all('footer', attrs={'class': 'site-footer'})
-       # disclaimer_content = soup.find_all('div', {'class': 'disclaimer'})
-        modal_content = soup.find_all('div', {'class': 'modal-content'})
-        wrapper_content = soup.find_all('div', {'class': 'wrapper'})
-
-        for d in divs:
-            #print item.get('class', '')
-            #rint "----------------"
-            if d.get('class', '') == ['modal-body']:
-                modal_body = [d]
-            if d.get('class', '') == ['ninja-forms-cont']:
-                form_content = [d]
-        for p in paragraphs:
-            if p.get('class', '') == ['disclaimer']:
-                disclaimer =  [p]
-        for f in footers:
-            if f.get('class', '') == ['site-footer']:
-                footer = [f]
-        '''
-        for item in soup:
-            for div in divs:
-                for d in div:
-                    if d.get('class', '') == ['bs4.element.Tag']:
-                        print type(d)
-                        print d
-                        print '---------'
-                    #if d.get('class','') == footer:
-                        #print d
-                       # print '---------'
-        '''
-
-        body = soup.find('body') #returns list of NavigableStrings, cannot 'get' NS
-        divs = soup.find('div')
-        
-        full_item = []
-        filtered_item = []
-
-        for item in soup:
-            for body_child in body.findChildren():
-                if isinstance(body_child, NavigableString):
-                    continue
-                else:
-                    full_item.append(body_child)
-        #print full_item
-        #print '---------------'
-                for item in full_item:
-                    if item.name == 'header':
-                        pass
-                    elif item.name == 'div':
-                        if item.get('class', '') == ['wrapper']:
-                            pass
-                    elif item.name == 'a':
-                        pass
-                    elif item.name == 'nav':
-                        pass
-                    elif item.name == 'svg':
-                        pass
-                    elif item.name == 'path':
-                        pass
-                    elif item.name == 'br':
-                        pass
-                    elif item.name == 'script':
-                        pass
-                    elif item.name == 'strong':
-                        pass
-                    elif item.name == 'iframe':
-                        pass
-                    elif item.name == 'label':
-                        pass
-                    elif item.name == 'form':
-                        pass
-                    elif item.name == 'input':
-                        pass
-                    elif item.name == 'span':
-                        pass
-                    elif item.name == 'option':
-                        pass
-                    elif item.name == 'select':
-                        pass
-                    else:
-                        print item.name
-                        print item
-                        print '================'
+f = open('services_urls.txt', 'r')
+urls = (line.strip() for line in f)
+   
+for url in urls:
+    response = requests.get(url)
+    html = response.content
+    soup = BeautifulSoup(html, 'lxml')
+    #divs = soup.find_all('div')
+    #paragraphs = soup.find_all('p')
+    #footers = soup.find_all('footer')
+    body = soup.find('body') #returns list of NavigableStrings, cannot 'get' NS
+    #divs = soup.find('div')
+    for item in soup:
+        for body_child in body.findChildren():
+            if isinstance(body_child, NavigableString):
+                pass
+            else:
+                print body_child
+                print '############'
 
 '''
-                for entry in item:
+                full_item.append(body_child)
+    #print full_item
+    #print '---------------'
+        print full_item
+        print '######'
+        for entry in full_item:
+            if entry.name == 'header':
+                pass
+            elif entry.name == 'div':
+                if entry.get('class', '') == ['wrapper']:
+                    pass
+            elif entry.name == 'a':
+                pass
+            elif entry.name == 'nav':
+                pass
+            elif entry.name == 'svg':
+                pass
+            elif entry.name == 'path':
+                pass
+            elif entry.name == 'br':
+                pass
+            elif entry.name == 'script':
+                pass
+            elif entry.name == 'strong':
+                pass
+            elif entry.name == 'iframe':
+                pass
+            elif entry.name == 'label':
+                pass
+            elif entry.name == 'form':
+                pass
+            elif entry.name == 'input':
+                pass
+            elif entry.name == 'span':
+                pass
+            elif entry.name == 'option':
+                pass
+            elif entry.name == 'svg':
+                pass
+            elif entry.name == 'select':
+                pass
+            else:
+                #print entry
+                #print '######'
+ '''       
+
+
+'''
+            for entry in item:
+                filter(lambda entry: entry.get(
+                    'class', '') != ['modal-footer'], full_item)
+                print full_item
+'''
+'''
+        for item in full_item:
+            for entry in item:
+                if item.get('class', '') == ['modal-footer']:
                     filter(lambda entry: entry.get(
                         'class', '') != ['modal-footer'], full_item)
-                    print full_item
-'''
-'''
-            for item in full_item:
-                for entry in item:
-                    if item.get('class', '') == ['modal-footer']:
-                        filter(lambda entry: entry.get(
-                            'class', '') != ['modal-footer'], full_item)
-                    else:
-                        print entry
-                        print '============================'
-            print "##############"
+                else:
+                    print entry
+                    print '============================'
+        print "##############"
 '''
 
-        
+    
 
 
-        #if div.get('class', '') == div.get('class', 'modal-footer'):
-                   # continue
+    #if div.get('class', '') == div.get('class', 'modal-footer'):
+                # continue
 
 
-            #title = soup.find_all('h1')
-            #dict_keys = soup.find_all('h2')
-            #print text
-            #print title, dict_keys
-           # print item
-           # print '------------------------'
-              
+        #title = soup.find_all('h1')
+        #dict_keys = soup.find_all('h2')
+        #print text
+        #print title, dict_keys
+        # print item
+        # print '------------------------'
+            
 
      
             #.page - content > div: nth - child(1) > div: nth - child(2) > p: nth - child(24)
