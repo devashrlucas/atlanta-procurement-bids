@@ -76,6 +76,7 @@ for url in urls:
     body = soup.find('body') #returns list of NavigableStrings, cannot 'get' NS
     #divs = soup.find('div')
     for item in soup:
+        # START HERE: NEED TO REMOVE SOCIAL MEDIA W/O REMOVING OTHER <LI> #############
         for body_child in body.findChildren():
             if isinstance(body_child, NavigableString):
                 pass
@@ -83,6 +84,12 @@ for url in urls:
                 pass
             elif body_child.name == 'div':
                 if body_child.get('class', '') == ['wrapper']:
+                    pass
+            elif body_child.name == 'p':
+                if body_child.get('class', '') == ['disclaimer']:
+                    pass
+            elif body_child.name == 'ul':
+                if body_child.get('class', '') == ['social-media-list']:
                     pass
             elif body_child.name == 'a':
                 pass
@@ -114,10 +121,27 @@ for url in urls:
                 pass
             elif body_child.name == 'select':
                 pass
+            elif body_child.name == 'button':
+                pass
+            elif body_child.name == 'footer':
+                pass
+            elif body_child.name == 'img':
+                pass
+            elif body_child.name == 'style':
+                pass
+            elif body_child.name == 'link':
+                pass  
+            elif body_child in body.select('.contact-list'):
+                pass 
+            elif body_child.name == 'li':
+                for item in body_child:
+                    if item.name == 'a':
+                        pass       
             else:
                 print body_child.name
                 print body_child
                 print '######'
+            
 
 '''
                 full_item.append(body_child)
