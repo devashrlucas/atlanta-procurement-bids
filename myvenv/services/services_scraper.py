@@ -147,18 +147,20 @@ for url in urls:
                         pass
                     elif entry.name == 'a' and 'https://na01.safelinks.protection.outlook.com' in entry['href']:
                         pass
-                    elif entry.name == 'None':
+                    elif entry.name == 'strong': #WOULD NEED TO BREAK LOOP HERE
                         pass
                     else:
                         print entry.name
                         print type(entry)
                         print entry
                         print '----'
+                        full_item.append(entry)
             elif body_child.name == 'p':
                 for entry in body_child:
                     if entry.get('class', '') == 'text':
                         pass
-                        
+            else:
+                full_item.append(body_child)
             '''
             else:
                 print body_child.name
