@@ -141,26 +141,25 @@ for url in urls:
                 pass  
             elif body_child in body.select('.contact-list'): #doesn't work
                 pass 
+            elif body_child.name == 'p':
+                for entry in body_child:
+                    if entry.get('class', '') == 'text':
+                        pass
             elif body_child.name == 'li':
                 for entry in body_child:
                     if entry.name == 'a' and entry['href'] == 'https://twitter.com/atlprocurement':
                         pass
                     elif entry.name == 'a' and 'https://na01.safelinks.protection.outlook.com' in entry['href']:
                         pass
-                    elif entry.name == 'strong': #WOULD NEED TO BREAK LOOP HERE
+                    elif entry.name == 'strong':  # WOULD NEED TO BREAK LOOP HERE
                         pass
                     else:
-                        print entry.name
-                        print type(entry)
-                        print entry
-                        print '----'
                         full_item.append(entry)
-            elif body_child.name == 'p':
-                for entry in body_child:
-                    if entry.get('class', '') == 'text':
-                        pass
             else:
                 full_item.append(body_child)
+            for item in soup: #this is the correct level for complete lists, but loop only returns 1st URL
+                print full_item
+                print '-------'
             '''
             else:
                 print body_child.name
