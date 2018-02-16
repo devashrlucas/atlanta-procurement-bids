@@ -62,6 +62,11 @@ with open('services_urls.txt', 'w+') as f:
 full_item = []
 filtered_item = []
 
+
+unordered_list = []
+nested_text = []
+ordered_list = []
+
 phrase = 'Mon-Fri, 8:15am - 5pm ET'
 
 
@@ -82,14 +87,6 @@ for url in urls:
         for body_child in body.findChildren():
             if isinstance(body_child, NavigableString):
                 pass
-            if body_child.name == 'h1':
-                print body_child
-    '''
-    for item in soup:
-        # START HERE: NEED TO REMOVE SOCIAL MEDIA W/O REMOVING OTHER <LI> #############
-        for body_child in body.findChildren():
-            if isinstance(body_child, NavigableString):
-                pass
             elif body_child.name == 'header':
                 pass
             elif body_child.name == 'site-footer': #doesn't work
@@ -100,15 +97,15 @@ for url in urls:
             elif body_child.name == 'p':
                 if body_child.get('class', '') == ['disclaimer']:
                     pass
+                else:
+                    nested_text.append(body_child)
             elif body_child.name == 'ul':
                 if body_child.get('class', '') == ['social-media-list']:
                     pass
                 if body_child.get('class', '') == ['contact-list']: #doesn't work
                     pass
-            elif body_child.name == 'ul':
-                for entry in body_child:
-                    if entry.name == 'strong': #WOULD NEED TO BREAK LOOP HERE
-                        pass
+                else:
+                    unordered_list.append(body_child)
             elif body_child.name == 'a':
                 pass
             elif body_child.name == 'nav':
@@ -160,18 +157,17 @@ for url in urls:
                     elif entry.name == 'a' and 'https://na01.safelinks.protection.outlook.com' in entry['href']:
                         pass
                     else:
-                        full_item.append(entry)
+                        ordered_list.append(entry)
             elif body_child.name == 'p':
                 for entry in body_child:
                     if entry.get('class', '') == 'text':
                         pass
-            else:
-                full_item.append(body_child)
-                print full_item
-                print '------'
-        
+    for item in ordered_list:
+        print item
+        print '-------'
+     
            
-    '''       
+        
 #h1: Title (key)
 #h2: subheadings (keys)     
 
@@ -291,5 +287,5 @@ turn titles or <h2> into dict keys?
 actual text is <p> but also using <p> blank for formatting
 some of the text is #text w/o any tags or other CSS
 proposal documemnts are <ul> or <li> and links(?)
-
+contact info seems to be automatic ---> give it a random key then filter it out or learn regex?
 """
