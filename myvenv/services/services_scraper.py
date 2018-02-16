@@ -62,6 +62,8 @@ with open('services_urls.txt', 'w+') as f:
 full_item = []
 filtered_item = []
 
+phrase = 'Mon-Fri, 8:15am - 5pm ET'
+
 
 f = open('services_urls.txt', 'r')
 urls = (line.strip() for line in f)
@@ -82,6 +84,8 @@ for url in urls:
                 pass
             elif body_child.name == 'header':
                 pass
+            elif body_child.name == 'site-footer': #doesn't work
+                pass
             elif body_child.name == 'div':
                 if body_child.get('class', '') == ['wrapper']:
                     pass
@@ -90,6 +94,8 @@ for url in urls:
                     pass
             elif body_child.name == 'ul':
                 if body_child.get('class', '') == ['social-media-list']:
+                    pass
+                if body_child.get('class', '') == ['contact-list']: #doesn't work
                     pass
             elif body_child.name == 'a':
                 pass
@@ -131,7 +137,9 @@ for url in urls:
                 pass
             elif body_child.name == 'link':
                 pass  
-            elif body_child in body.select('.contact-list'):
+            elif body_child.name == 'h3':
+                pass  
+            elif body_child in body.select('.contact-list'): #doesn't work
                 pass 
             elif body_child.name == 'li':
                 for entry in body_child:
@@ -139,22 +147,29 @@ for url in urls:
                         pass
                     elif entry.name == 'a' and 'https://na01.safelinks.protection.outlook.com' in entry['href']:
                         pass
+                    elif entry.name == 'None':
+                        pass
                     else:
+                        print entry.name
+                        print type(entry)
                         print entry
+                        print '----'
             elif body_child.name == 'p':
                 for entry in body_child:
                     if entry.get('class', '') == 'text':
                         pass
-                    else:
-                        print entry
+                        
+            '''
             else:
                 print body_child.name
+                print type(body_child)
                 print body_child
-                print '######'
+                print '==='
+            '''
             
-#### need to deal with if item in body_child.find_all('strong') ####
-        
-            
+#h1: Title (key)
+#h2: subheadings (keys)     
+
 
 '''
             for entry in item:
