@@ -82,6 +82,14 @@ for url in urls:
         for body_child in body.findChildren():
             if isinstance(body_child, NavigableString):
                 pass
+            if body_child.name == 'h1':
+                print body_child
+    '''
+    for item in soup:
+        # START HERE: NEED TO REMOVE SOCIAL MEDIA W/O REMOVING OTHER <LI> #############
+        for body_child in body.findChildren():
+            if isinstance(body_child, NavigableString):
+                pass
             elif body_child.name == 'header':
                 pass
             elif body_child.name == 'site-footer': #doesn't work
@@ -97,6 +105,10 @@ for url in urls:
                     pass
                 if body_child.get('class', '') == ['contact-list']: #doesn't work
                     pass
+            elif body_child.name == 'ul':
+                for entry in body_child:
+                    if entry.name == 'strong': #WOULD NEED TO BREAK LOOP HERE
+                        pass
             elif body_child.name == 'a':
                 pass
             elif body_child.name == 'nav':
@@ -141,33 +153,25 @@ for url in urls:
                 pass  
             elif body_child in body.select('.contact-list'): #doesn't work
                 pass 
-            elif body_child.name == 'p':
-                for entry in body_child:
-                    if entry.get('class', '') == 'text':
-                        pass
             elif body_child.name == 'li':
                 for entry in body_child:
                     if entry.name == 'a' and entry['href'] == 'https://twitter.com/atlprocurement':
                         pass
                     elif entry.name == 'a' and 'https://na01.safelinks.protection.outlook.com' in entry['href']:
                         pass
-                    elif entry.name == 'strong':  # WOULD NEED TO BREAK LOOP HERE
-                        pass
                     else:
                         full_item.append(entry)
+            elif body_child.name == 'p':
+                for entry in body_child:
+                    if entry.get('class', '') == 'text':
+                        pass
             else:
                 full_item.append(body_child)
-            for item in soup: #this is the correct level for complete lists, but loop only returns 1st URL
                 print full_item
-                print '-------'
-            '''
-            else:
-                print body_child.name
-                print type(body_child)
-                print body_child
-                print '==='
-            '''
-            
+                print '------'
+        
+           
+    '''       
 #h1: Title (key)
 #h2: subheadings (keys)     
 
