@@ -67,8 +67,8 @@ unordered_list = []
 nested_text = []
 ordered_list = []
 
-time_phrase = 'Mon-Fri, 8:15am - 5pm ET'
-city_phrase = '<strong>City of Atlanta<br/>Department of Procurement</strong>'
+time_phrase = 'Mon-Fri, 8:15am - 5pm ET' #works
+city_phrase = '<strong>City of Atlanta<br/>Department of Procurement</strong>'  # doesn't work
 department_phrase = 'Department of Procurement'
 address_one_phrase = '55 Trinity Avenue - Ste. 1900'
 address_two_phrase = 'Atlanta, GA 30303'
@@ -172,7 +172,11 @@ for url in urls:
                     if entry.get('class', '') == 'text':
                         pass
     for item in ordered_list:
-        test_list = [item for item in ordered_list if item not time_phrase not in city_phrase] #doesn't work
+        test_list = [item for item in ordered_list if time_phrase not in item 
+                                                    if city_phrase not in item
+                                                    if fax_one_phrase not in item
+                                                    if department_phrase not in item
+                                                    if address_one_phrase not in item] 
         print test_list
         print '-------'
      
