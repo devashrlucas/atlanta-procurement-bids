@@ -179,11 +179,11 @@ for url in urls:
                                                     if address_two_phrase not in item
                                                     if phone_one_phrase not in item
                                                     if fax_one_phrase not in item
-                                                    if phone_two_phrase not in item]                                               
+                                                    if ' 404.658.7705' not in item
+                                                    if ' 404.330.6204' not in item]                                               
         print test_list
         print '-------'
-     
-           
+      
         
 #h1: Title (key)
 #h2: subheadings (keys)     
