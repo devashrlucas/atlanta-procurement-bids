@@ -91,13 +91,7 @@ for url in urls:
     #footers = soup.find_all('footer')
     body = soup.find('body') #returns list of NavigableStrings, cannot 'get' NS
     #divs = soup.find('div')
-    for item in soup:
-        print item.name
-        print type(item)
-        print item
-        print '------'
-    print '======='
-    '''
+'''
     for item in soup:
         # START HERE: NEED TO REMOVE SOCIAL MEDIA W/O REMOVING OTHER <LI> #############
         for body_child in body.findChildren():
@@ -180,9 +174,9 @@ for url in urls:
                         pass
             else:
                 ordered_list.append(body_child)
-    '''
+    ###### END OF THIS ONE 
                 
-    '''
+
     for item in ordered_list:
         test_list = [item for item in ordered_list if time_phrase not in item 
                                                     if city_phrase not in item
@@ -195,8 +189,8 @@ for url in urls:
                                                     if ' 404.330.6204' not in item]                                               
         #print test_list
         #print '-------'
-    '''
-    '''
+    ##### END OF THIS ONE
+    
     for item in ordered_list:
         filtered_list = [item for item in ordered_list if time_phrase not in item 
                                                     if city_phrase not in item
@@ -209,19 +203,20 @@ for url in urls:
                                                     if ' 404.330.6204' not in item] 
     print filtered_list
     print '--------'
-    ''' 
+    ##### END OF THIS ONE
+    
         
 #h1: Title (key)
 #h2: subheadings (keys)     
 
 
-'''
+
             for entry in item:
                 filter(lambda entry: entry.get(
                     'class', '') != ['modal-footer'], full_item)
                 print full_item
-'''
-'''
+    ##### END OF THIS ONE
+
         for item in full_item:
             for entry in item:
                 if item.get('class', '') == ['modal-footer']:
@@ -231,7 +226,7 @@ for url in urls:
                     print entry
                     print '============================'
         print "##############"
-'''
+    ##### END OF THIS ONE 
 
     
 
@@ -253,63 +248,9 @@ for url in urls:
 
 ############### NEED TEXT THAT ISN'T IN FOOT OR DISCLAIMER 
 ################# MAYBE IT DEPENDS ON HOW IT"S LOADED IN? AJAX? JSON? JS? JQUERY? I DON'T KNOW      
-        
-
-'''
-#text = soup.find_all('p') NOT QUITE, ALSO RETURNS GREY TEXT (class="site-footer")
-for item in soup:
-    #print title, dict_keys, text
-    print item
-    print "--------------------------"
-'''
+'''       
 
 
-'''
-    response = requests.get(url)
-    html = response.content
-    soup = BeautifulSoup(html, 'html.parser')
-    #print soup.prettify()
-
-    content = soup.find_all("div", {"class": "page-content"})
-
-    for div in content:
-        print div
-''' 
-
-
-'''
-box = driver.find_element_by_xpath('//*[@id="project-solicitations"]')
-options = box.find_element_by_css_selector('.btn')
-for option in options:
-    print option
-'''
-
-
-
-''' LISTS TITLES
-box = driver.find_element_by_xpath('//*[@id="project-solicitations"]')
-print box.text
-'''
-
-'''PRINTS LIST OF IDS
-options = box.find_elements_by_tag_name('option')
-optionsList = []
-
-for option in options:
-    #optionsList.append(option.get_attribute('value'))
-    if option.get_attribute('value') != 'blank':
-        optionsList.append(option.get_attribute('value'))
-        
-print optionsList
-'''
-
-
-
-'''BS
-html = requests.get(url).content
-soup = BeautifulSoup(html, 'html.parser')
-print soup.prettify()
-'''
 
 
 
