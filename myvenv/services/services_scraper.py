@@ -73,9 +73,9 @@ department_phrase = 'Department of Procurement'
 address_one_phrase = '55 Trinity Avenue - Ste. 1900'
 address_two_phrase = 'Atlanta, GA 30303'
 phone_one_phrase = 'Phone:'
-phone_two_phrase = ' 404.330.6204',
+phone_two_phrase = ' 404.330.6204', #TypeError: coercing to Unicode: need string or buffer, tuple found
 fax_one_phrase = 'Fax:'
-fax_two_phrase = ' 404.658.7705'
+fax_two_phrase = ' 404.658.7705' #TypeError: coercing to Unicode: need string or buffer, tuple found
 
 
 
@@ -174,9 +174,12 @@ for url in urls:
     for item in ordered_list:
         test_list = [item for item in ordered_list if time_phrase not in item 
                                                     if city_phrase not in item
-                                                    if fax_one_phrase not in item
                                                     if department_phrase not in item
-                                                    if address_one_phrase not in item] 
+                                                    if address_one_phrase not in item
+                                                    if address_two_phrase not in item
+                                                    if phone_one_phrase not in item
+                                                    if fax_one_phrase not in item
+                                                    if phone_two_phrase not in item]                                               
         print test_list
         print '-------'
      
