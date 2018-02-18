@@ -78,10 +78,11 @@ fax_one_phrase = 'Fax:'
 fax_two_phrase = ' 404.658.7705' #TypeError: coercing to Unicode: need string or buffer, tuple found
 
 
-
-f = open('services_urls.txt', 'r')
+f = open('services_urls.txt', 'r', encoding="utf-8")
 urls = (line.strip() for line in f)
-   
+long_phrase = ' The City of Atlanta (the “City”) does not warrant, represent or guarantee the accuracy or completeness of information provided at this website. Information provided here is simply for your convenience. There may be recent addenda or changes in the Request for Proposals (“RFP”) or bid documents including, among other things, the bidding instructions, general conditions, technical specifications, and exhibits that may not be currently reflected at this site. The City shall not be responsible or liable in any way for errors, inaccuracies or omissions in any documents or information retrieved or downloaded from this site.'
+
+
 for url in urls:
     response = requests.get(url)
     html = response.content
@@ -107,6 +108,50 @@ for url in urls:
                         pass
             elif body_child.name == 'nav':
                 pass
+            elif body_child.name == 'svg':
+                pass
+            elif body_child.name == 'strong':
+                pass
+            elif body_child.name == 'script':
+                pass
+            elif body_child.name == 'label':
+                pass
+            elif body_child.name == 'form':
+                pass
+            #elif body_child.name == 'p':
+                for entry in body_child:
+                    if entry.name == 'span':
+                        pass
+                    if entry.name =='':
+                        pass
+                    if long_phrase in entry:
+                        pass
+            elif body_child.name == 'ul':
+                for entry in body_child:
+                    if entry.name == 'None':
+                        pass
+            elif body_child.name == 'h3':
+                pass
+            elif body_child.name == 'span':
+                for entry in body_child:
+                    if entry.name == 'strong':
+                        pass
+            elif body_child.name == 'select':
+                pass
+            elif body_child.name == 'option':
+                pass
+            elif body_child.name == 'button':
+                pass
+            elif body_child.name == 'footer':
+                pass
+            elif ' 404.330.6204' in body_child:
+                pass
+            elif body_child.name == 'li': 
+                for entry in body_child:
+                    if entry.name == 'strong':  # City of Atlanta
+                        pass
+            elif body_child.name == 'style':
+                pass
             else:
                 for entry in body_child:
                     print "body_child ", body_child.name
@@ -114,7 +159,7 @@ for url in urls:
                     print entry
                     print '------'
         print '===='
-
+#Want to keep (* means some of these): h1, p, h2, *span (none), *ul (li), li (a), *li (None),
 '''
     for item in soup:
         # START HERE: NEED TO REMOVE SOCIAL MEDIA W/O REMOVING OTHER <LI> #############
