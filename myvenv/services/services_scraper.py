@@ -91,6 +91,18 @@ for url in urls:
     #footers = soup.find_all('footer')
     body = soup.find('body') #returns list of NavigableStrings, cannot 'get' NS
     #divs = soup.find('div')
+    for item in soup:
+        for body_child in body.findChildren():
+            if isinstance(body_child, NavigableString):
+                pass
+            else:
+                for entry in body_child:
+                    print "body_child ", body_child.name
+                    print "entry ", entry.name
+                    print entry
+                    print '------'
+        print '===='
+
 '''
     for item in soup:
         # START HERE: NEED TO REMOVE SOCIAL MEDIA W/O REMOVING OTHER <LI> #############
@@ -174,9 +186,10 @@ for url in urls:
                         pass
             else:
                 ordered_list.append(body_child)
+        print ordered_list
     ###### END OF THIS ONE 
-                
-
+'''                
+'''
     for item in ordered_list:
         test_list = [item for item in ordered_list if time_phrase not in item 
                                                     if city_phrase not in item
