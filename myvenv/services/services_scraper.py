@@ -95,6 +95,18 @@ for url in urls:
         for body_child in body.findChildren():
             if isinstance(body_child, NavigableString):
                 pass
+            elif body_child.name == 'header':
+                pass
+            elif body_child.name == 'div':
+                for entry in body_child:
+                    if entry.name == 'None':
+                        pass
+            elif body_child.name == 'a':
+                for entry in body_child:
+                    if entry.name == 'None':
+                        pass
+            elif body_child.name == 'nav':
+                pass
             else:
                 for entry in body_child:
                     print "body_child ", body_child.name
