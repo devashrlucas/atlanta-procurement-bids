@@ -1,3 +1,6 @@
+ #!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 from bs4 import BeautifulSoup, NavigableString
 import requests
 import simplejson as json
@@ -8,6 +11,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import StaleElementReferenceException
+
 
 '''   DONE --- LEAVE THIS ALONE
 url = 'http://procurement.atlantaga.gov/solicitations/'
@@ -78,10 +82,10 @@ fax_one_phrase = 'Fax:'
 fax_two_phrase = ' 404.658.7705' #TypeError: coercing to Unicode: need string or buffer, tuple found
 
 
-f = open('services_urls.txt', 'r', encoding="utf-8")
+f = open('services_urls.txt', 'r')
 urls = (line.strip() for line in f)
 long_phrase = ' The City of Atlanta (the “City”) does not warrant, represent or guarantee the accuracy or completeness of information provided at this website. Information provided here is simply for your convenience. There may be recent addenda or changes in the Request for Proposals (“RFP”) or bid documents including, among other things, the bidding instructions, general conditions, technical specifications, and exhibits that may not be currently reflected at this site. The City shall not be responsible or liable in any way for errors, inaccuracies or omissions in any documents or information retrieved or downloaded from this site.'
-
+long_phrase = long_phrase.decode('utf-8')
 
 for url in urls:
     response = requests.get(url)
