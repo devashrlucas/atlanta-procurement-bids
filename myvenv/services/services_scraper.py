@@ -93,16 +93,28 @@ for url in urls:
     soup = BeautifulSoup(html, 'lxml')
     # returns list of NavigableStrings, cannot 'get' NS
     body = soup.find('body')
+    divs = soup.find_all('div')
 
     for item in soup:
-        for body_child in body.findChildren():
+        for body_child in body:
             if isinstance(body_child, NavigableString):
                 pass
             elif body_child.name == 'footer':
-                for entry in body_child:
-                    for x in entry:
-                        print x.name
-            '''      
+                #for entry in body_child:
+                    #print 'body_child ', body_child.name
+                    #print 'entry ', entry.name
+                    #print entry
+                    #print '`````'
+                    continue
+            else:
+                #print body_child.name
+                #print body_child
+                #print '----'
+                continue
+        for div in divs:
+            if div.get('class', '') == ['modal-body']:
+                print div
+            ''' 
             else:
                 for entry in body_child:
                     #full_item.append(entry)
@@ -112,7 +124,7 @@ for url in urls:
                     print entry
                     print '----'
             '''
-        print '======'
+        #print '======'
 '''
 body_child  footer
 entry  div
