@@ -99,21 +99,33 @@ for url in urls:
         for body_child in body:
             if isinstance(body_child, NavigableString):
                 pass
+            elif body_child.name == 'header':
+                pass
+            elif body_child.name == 'script': 
+                pass
+            elif body_child.name == 'link':
+                pass
             elif body_child.name == 'footer':
-                #for entry in body_child:
-                    #print 'body_child ', body_child.name
-                    #print 'entry ', entry.name
-                    #print entry
-                    #print '`````'
-                    continue
+                pass
             else:
-                #print body_child.name
-                #print body_child
-                #print '----'
-                continue
-        for div in divs:
-            if div.get('class', '') == ['modal-body']:
-                print div
+                for div in divs:
+                    if div.get('class', '') == ['wrapper']:
+                        pass
+                    elif div.get('class', '') == ['bitnami-corner-image-div']:
+                        pass
+                    else:
+                        continue
+            print "body_child ", body_child.name
+            print "div class ", div.get('class', '')
+            print div
+            #print body_child
+            print '~~~~~'
+            '''
+            for item in soup:
+                    for div in divs:
+                        if div.get('class', '') == ['modal-body']: #this is corrct
+                            print div
+                        '''
             ''' 
             else:
                 for entry in body_child:
@@ -123,8 +135,8 @@ for url in urls:
                     print "entry ", entry.name
                     print entry
                     print '----'
-            '''
-        #print '======'
+        '''
+        print '======'
 '''
 body_child  footer
 entry  div
