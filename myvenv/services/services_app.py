@@ -2,7 +2,7 @@
 #coding=utf-8
 from flask import Flask, jsonify
 
-from services_scraper import keep_copy
+#from services_scraper import keep_copy
 
 app = Flask(__name__)
 '''
