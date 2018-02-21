@@ -2,13 +2,13 @@
 #coding=utf-8
 from flask import Flask, jsonify
 
-import services_scraper 
+import services_scraper as ss
 
 app = Flask(__name__)
 
 @app.route('/')
 def post_solicitation():
-    return jsonify({'Solicitation': [item for item in services_scrapper.keep_copy]})
+    return jsonify({'Solicitation': [item for item in ss.keep_copy]})
 
 
 if __name__ == '__main__':

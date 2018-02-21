@@ -111,5 +111,6 @@ for url in urls:
 
 """
 Notes:
-Quicker to store dictionary in sqlalchemy then use flask to access
+Quicker to store dictionary in sqlalchemy then use flask to access?
+Need to run scraper to get keep_copy for app.py?
 """
