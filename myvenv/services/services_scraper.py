@@ -86,6 +86,7 @@ urls = (line.strip() for line in f)
 long_phrase = ' The City of Atlanta'
 long_phrase = long_phrase.decode('utf-8')
 
+to_keep = []
 
 for url in urls:
     response = requests.get(url)
@@ -104,9 +105,15 @@ for url in urls:
             if item.name == 'div':
                 for entry in item:
                     if entry.name == 'div':
-                        print entry.name
-                        print entry
-                        print '``'
+                        if entry.get('class', '') == ['wrapper']:
+                                pass 
+                        for item in entry.findChildren():
+                            if item.name == 'div':
+                                for entry in item:
+                                    print 'entry name ', entry.name
+                                    print entry
+                                    print '*******'
+                                
             '''
             for item in soup:
                     for div in divs:
