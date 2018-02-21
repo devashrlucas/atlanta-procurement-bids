@@ -102,14 +102,11 @@ for url in urls:
                                             re.sub('<[^>]*>', '', str(entry)))
                                     if 'a conflict or discrepancy between the information or documents' in str(entry):
                                             pass  
-                                #for item in to_keep:
                                 keep_copy = {key: value for key, value in enumerate(to_keep)}
-                                #print to_keep #correct level
-                                print keep_copy
-                                #print full_list
-                                print '*******'
+                                #print keep_copy
+                                #print '*******'
                                           
-        print '======'
+        #print '======'
 #  entry = bleach.clean(entry, tags=['ref'], strip=True)
 #re.sub('<[^>]*>', '', mystring) #strips HTML tags
 
