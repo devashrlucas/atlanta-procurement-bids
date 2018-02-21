@@ -94,32 +94,15 @@ for url in urls:
     # returns list of NavigableStrings, cannot 'get' NS
     body = soup.find('body')
     divs = soup.find_all('div')
+    everything = soup.find()
 
     for item in soup:
-        for body_child in body:
-            if isinstance(body_child, NavigableString):
-                pass
-            elif body_child.name == 'header':
-                pass
-            elif body_child.name == 'script': 
-                pass
-            elif body_child.name == 'link':
-                pass
-            elif body_child.name == 'footer':
+        for entry in body:
+            if isinstance(entry, NavigableString):
                 pass
             else:
-                for div in divs:
-                    if div.get('class', '') == ['wrapper']:
-                        pass
-                    elif div.get('class', '') == ['bitnami-corner-image-div']:
-                        pass
-                    else:
-                        continue
-            print "body_child ", body_child.name
-            print "div class ", div.get('class', '')
-            print div
-            #print body_child
-            print '~~~~~'
+                print soup.find('', '')
+                print '``'
             '''
             for item in soup:
                     for div in divs:
