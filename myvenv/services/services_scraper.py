@@ -102,7 +102,11 @@ for url in urls:
             pass
         for item in body:
             if item.name == 'div':
-                print item
+                for entry in item:
+                    if entry.name == 'div':
+                        print entry.name
+                        print entry
+                        print '``'
             '''
             for item in soup:
                     for div in divs:
