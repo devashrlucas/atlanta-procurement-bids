@@ -1,5 +1,5 @@
 
-
+#coding=utf-8
 from bs4 import BeautifulSoup, NavigableString
 import requests
 import simplejson as json
