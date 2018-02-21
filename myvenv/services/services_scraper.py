@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup, NavigableString
 import requests
 import simplejson as json
 import re
+import bleach 
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -76,6 +77,7 @@ for url in urls:
     for item in soup:
         to_keep = []
         keep_copy = {}
+        full_list = {}
         if isinstance(item, NavigableString):
             pass
         for item in body:
@@ -88,23 +90,29 @@ for url in urls:
                             if item.name == 'div':
                                 for entry in item:
                                     if entry.name == 'h1':
-                                        to_keep.append(entry)
+                                        to_keep.append(
+                                            re.sub('<[^>]*>', '', str(entry)))
                                     if entry.name == 'p':
-                                        to_keep.append(entry)
+                                        to_keep.append(
+                                            re.sub('<[^>]*>', '', str(entry)))
                                     if entry.name == 'h2':
-                                        to_keep.append(entry)
+                                        to_keep.append(
+                                            re.sub('<[^>]*>', '', str(entry)))
                                     if entry.name == 'ul':
-                                        to_keep.append(entry)
+                                        to_keep.append(
+                                            re.sub('<[^>]*>', '', str(entry)))
                                     if 'a conflict or discrepancy between the information or documents' in str(entry):
-                                            pass
-                                keep_copy = {key: value for key,
-                                             value in enumerate(to_keep)}
+                                            pass  
+                                #for item in to_keep:
+                                keep_copy = {key: value for key, value in enumerate(to_keep)}
                                 #print to_keep #correct level
                                 print keep_copy
+                                #print full_list
                                 print '*******'
                                           
         print '======'
-#re.sub(r"<!--(.|\s|\n)*?-->", "", soup)
+#  entry = bleach.clean(entry, tags=['ref'], strip=True)
+#re.sub('<[^>]*>', '', mystring) #strips HTML tags
 
 """
 Flow:
