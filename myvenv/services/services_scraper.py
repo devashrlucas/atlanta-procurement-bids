@@ -86,7 +86,7 @@ urls = (line.strip() for line in f)
 long_phrase = ' The City of Atlanta'
 long_phrase = long_phrase.decode('utf-8')
 
-to_keep = []
+
 
 for url in urls:
     response = requests.get(url)
@@ -98,6 +98,7 @@ for url in urls:
     everything = soup.find()
 
     for item in soup:
+        to_keep = []
         #for entry in body:
         if isinstance(item, NavigableString):
             pass
@@ -107,13 +108,23 @@ for url in urls:
                     if entry.name == 'div':
                         if entry.get('class', '') == ['wrapper']:
                                 pass 
-                        for item in entry.findChildren():
+                        for item in entry.findChildren(): #returns a list
                             if item.name == 'div':
                                 for entry in item:
-                                    print 'entry name ', entry.name
-                                    print entry
-                                    print '*******'
-                                
+                                    if entry.name == 'h1':
+                                        to_keep.append(entry)
+                                    if entry.name == 'p':
+                                        to_keep.append(entry)
+                                    if entry.name == 'h2':
+                                        to_keep.append(entry)
+                                    if entry.name == 'ul':
+                                        to_keep.append(entry)
+                                    if 'a conflict or discrepancy between the information or documents' in str(entry):
+                                            pass
+                                print to_keep
+                                    #print 'entry name ', entry.name
+                                    #print entry
+                                print '*******'                
             '''
             for item in soup:
                     for div in divs:
