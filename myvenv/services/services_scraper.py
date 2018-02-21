@@ -1,5 +1,5 @@
 
-#coding=utf-8
+# -*- coding: utf-8 -*-
 from bs4 import BeautifulSoup, NavigableString
 import requests
 import simplejson as json
@@ -100,28 +100,16 @@ for url in urls:
                                     if entry.name == 'ul':
                                         to_keep.append(
                                             re.sub('<[^>]*>', '', str(entry)))
-                                    if 'a conflict or discrepancy between the information or documents' in str(entry):
-                                            pass  
+                                    #if 'a conflict or discrepancy between the information or documents' in str(entry):
+                                            #pass  
                                 keep_copy = {key: value for key, value in enumerate(to_keep)}
                                 #print keep_copy
                                 #print '*******'
                                           
         #print '======'
-#  entry = bleach.clean(entry, tags=['ref'], strip=True)
-#re.sub('<[^>]*>', '', mystring) #strips HTML tags
+
 
 """
-Flow:
-if option value is not blank:
-    for each option:
-        click get more information ('//*[@id="project-more-info-link"]')
-        get info from project-info-well OR scrape the new URL in a seperate tab
-        capture new URL and save it to a list
-run URLs in list through function to scrape data? (may not need SE for that partt)
-
-turn titles or <h2> into dict keys?
-actual text is <p> but also using <p> blank for formatting
-some of the text is #text w/o any tags or other CSS
-proposal documemnts are <ul> or <li> and links(?)
-contact info seems to be automatic ---> give it a random key then filter it out or learn regex?
+Notes:
+Quicker to store dictionary in sqlalchemy then use flask to access
 """
