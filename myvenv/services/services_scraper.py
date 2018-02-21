@@ -97,12 +97,12 @@ for url in urls:
     everything = soup.find()
 
     for item in soup:
-        for entry in body:
-            if isinstance(entry, NavigableString):
-                pass
-            else:
-                print soup.find('', '')
-                print '``'
+        #for entry in body:
+        if isinstance(item, NavigableString):
+            pass
+        for item in body:
+            if item.name == 'div':
+                print item
             '''
             for item in soup:
                     for div in divs:
