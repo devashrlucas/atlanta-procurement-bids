@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup, NavigableString
 import requests
 import simplejson as json
 import re
-import bleach 
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
