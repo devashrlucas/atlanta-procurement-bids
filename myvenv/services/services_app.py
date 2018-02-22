@@ -5,6 +5,8 @@ from flask import make_response
 from flask import abort
 from flask import render_template
 
+import simplejson as json
+
 import services_scraper as ss
 
 
@@ -12,10 +14,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def post_solicitation():
-    if len(ss.forward_output) == 0:
+    if len(ss.json_object) == 0:
         abort(404)
     else:
-        for item in ss.forward_output:
+        for item in ss.json_object:
             return jsonify(item)
         #return render_template('services_template.html')
         #{key:value for key, value in ss.forward_output.iteritems()}
