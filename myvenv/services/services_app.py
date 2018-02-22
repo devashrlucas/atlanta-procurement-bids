@@ -15,12 +15,15 @@ app = Flask(__name__)
 @app.route('/')
 def post_solicitation():
     for item in ss.forward_output:
-        if len(ss.forward_output) == 0:
-            abort(404)
-    else:
-        return jsonify(ss.forward_output)
+        for majorkey, subdict in item.iteritems():
+            subdict = subdict
+            if len(subdict) == 0:
+                abort(404)
+        else:
+            return jsonify(subdict)
         #return render_template('services_template.html')
         #{key:value for key, value in ss.forward_output.iteritems()}
+
 
 
 @app.errorhandler(404)
