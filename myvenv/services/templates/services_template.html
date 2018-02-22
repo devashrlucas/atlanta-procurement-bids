@@ -1,34 +1,25 @@
 <!DOCTYPE html>
+
 import services_scraper as ss
-from test.format import tester
-services_template.render(tester)
 
-<table>
-<tr>
-    <th>name_of_list</th>
-    <th>values</th>
-</tr>
-
-{% for key, values in tester %}
-<tr>
-    <td>{{key}}</td>
-    <td>
+<html>
+    <head>
+        <title> Current Solicitations </title>
+    </head>
+    <body>
         <table>
+            {%  for key, values in ss.forward_output.iteritems()  %}
             <tr>
-                <th>article_title</th>
-                <th>score</th>
-                <th>type</th>
+                <td>{{  key  }}</td>
             </tr>
+            {%  for item in ss.forward_output.iteritems()  %}
             <tr>
-                {% for articles in values %}
-                <td>{{article.article_title}}</td>
-                <td>{{article.score}}</td>
-                <td>{{article.type}}</td>
-                {% endfor %}
+                {  for key, value in item  }
+                <td>{{  value  }}</td>
             </tr>
-    </td>
-</tr>
-{% endfor %}
+        {% endfor %}
+        </table>        
+    </body>
+</html>
 
-</table>
  
