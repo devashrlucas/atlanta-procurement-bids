@@ -108,9 +108,8 @@ def get_info():
                                     #print keep_copy
                                     #print '*******'                           
 forward_output = get_info()
-json_object = json.dumps(forward_output)
-json_object = json.loads(json_object)
-#print json_object
+#json_object = json.dumps(forward_output)
+#json_object = json.loads(json_object)
 
 """
 Notes:
