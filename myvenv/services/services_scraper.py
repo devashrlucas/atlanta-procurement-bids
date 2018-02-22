@@ -103,7 +103,7 @@ def get_info():
                                                 re.sub('<[^>]*>', '', str(entry)))
                                         #if 'a conflict or discrepancy between the information or documents' in str(entry):
                                                 #pass  
-                                    keep_copy = {key: value for key, value in enumerate(to_keep)}
+                                    keep_copy = [{key: value for key, value in enumerate(to_keep)}]
                                     return keep_copy
                                     #print keep_copy
                                     #print '*******'                           

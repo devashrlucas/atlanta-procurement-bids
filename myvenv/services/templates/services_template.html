@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+import services_scraper as ss
+from test.format import tester
+services_template.render(tester)
+
+<table>
+<tr>
+    <th>name_of_list</th>
+    <th>values</th>
+</tr>
+
+{% for key, values in tester %}
+<tr>
+    <td>{{key}}</td>
+    <td>
+        <table>
+            <tr>
+                <th>article_title</th>
+                <th>score</th>
+                <th>type</th>
+            </tr>
+            <tr>
+                {% for articles in values %}
+                <td>{{article.article_title}}</td>
+                <td>{{article.score}}</td>
+                <td>{{article.type}}</td>
+                {% endfor %}
+            </tr>
+    </td>
+</tr>
+{% endfor %}
+
+</table>
+ 
