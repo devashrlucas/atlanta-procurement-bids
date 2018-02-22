@@ -15,7 +15,9 @@ def post_solicitation():
     if len(ss.forward_output) == 0:
         abort(404)
     else:
-        return render_template('services_template.html')
+        for item in ss.forward_output:
+            return jsonify(item)
+        #return render_template('services_template.html')
         #{key:value for key, value in ss.forward_output.iteritems()}
 
 

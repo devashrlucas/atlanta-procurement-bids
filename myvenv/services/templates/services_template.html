@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 
-import services_scraper as ss
+from services_scraper.format import get_info
+services_template.render(get_info)
+
 
 <html>
     <head>
@@ -8,14 +10,15 @@ import services_scraper as ss
     </head>
     <body>
         <table>
-            {%  for key, values in ss.forward_output.iteritems()  %}
+            {%  for key, values in get_info  %}
             <tr>
                 <td>{{  key  }}</td>
             </tr>
-            {%  for item in ss.forward_output.iteritems()  %}
+            {%  for item in get_info %}
             <tr>
                 {  for key, value in item  }
                 <td>{{  value  }}</td>
+                {% endfor %}
             </tr>
         {% endfor %}
         </table>        
