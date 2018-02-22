@@ -4,6 +4,8 @@ from flask import Flask, jsonify
 
 import services_scraper as ss
 
+ss.keep_copy = ss.get_info()
+
 app = Flask(__name__)
 
 @app.route('/')
