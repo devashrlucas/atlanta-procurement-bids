@@ -6,16 +6,15 @@ from flask import abort
 
 import services_scraper as ss
 
-keep_copy = ss.get_info()
 
 app = Flask(__name__)
 
 @app.route('/')
 def post_solicitation():
-        if len(keep_copy) == 0:
-            abort(404)
-        else:
-            return jsonify({'Solicitation': keep_copy})
+    if len(ss.forward_output) == 0:
+        abort(404)
+    else:
+        return jsonify({key:value for key, value in ss.forward_output.iteritems()})
 
 
 @app.errorhandler(404)

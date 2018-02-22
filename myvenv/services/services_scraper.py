@@ -66,7 +66,6 @@ with open('services_urls.txt', 'w+') as f:
 f = open('services_urls.txt', 'r')
 urls = (line.strip() for line in f)
 
-
 def get_info():
     for url in urls:
         response = requests.get(url)
@@ -107,10 +106,8 @@ def get_info():
                                     keep_copy = {key: value for key, value in enumerate(to_keep)}
                                     return keep_copy
                                     #print keep_copy
-                                    #print '*******'
-                                            
-
-
+                                    #print '*******'                           
+forward_output = get_info()
 """
 Notes:
 Quicker to store dictionary in sqlalchemy then use flask to access?
