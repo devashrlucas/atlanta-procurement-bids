@@ -3,6 +3,7 @@
 from flask import Flask, jsonify
 from flask import make_response
 from flask import abort
+from flask import render_template
 
 import services_scraper as ss
 
@@ -14,7 +15,8 @@ def post_solicitation():
     if len(ss.forward_output) == 0:
         abort(404)
     else:
-        return jsonify({key:value for key, value in ss.forward_output.iteritems()})
+        return jsonify(render_template('services_template.html'))
+        #{key:value for key, value in ss.forward_output.iteritems()}
 
 
 @app.errorhandler(404)

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+import services_scraper as ss
+
+<table>
+    {% key, value for ss.forward_output.iteritems() %}
+    <tr>
+        <th>{{ key }}</th>
+        <th>{{ value }}</th>
+    </tr>
+    {% endfor %}
+</table>
