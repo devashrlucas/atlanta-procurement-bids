@@ -66,8 +66,8 @@ with open('services_urls.txt', 'w+') as f:
 f = open('services_urls.txt', 'r')
 urls = (line.strip() for line in f)
 
-def get_info():
-    for url in urls:
+
+def get_info(url):
         response = requests.get(url)
         html = response.content
         soup = BeautifulSoup(html, 'lxml')
@@ -103,14 +103,18 @@ def get_info():
                                                 re.sub('<[^>]*>', '', str(entry)))
                                         #if 'a conflict or discrepancy between the information or documents' in str(entry):
                                                 #pass  
-                                    keep_copy = [{key: value for key, value in enumerate(to_keep)}]
-                                    get_info.keep_copy = keep_copy #function attribute
-                                    #return info.keep_copy
+                                    get_info.keep_copy = [{key: value for key, value in enumerate(to_keep)}]
+
                                     #print keep_copy
                                     #print '*******'
-#THIS TIMES OUT?
-get_info()
-print get_info.keep_copy
+#function attribute
+for url in urls:
+    get_info(url)
+    print get_info.keep_copy
+
+
+#print (get_info.keep_copy)  # THIS TIMES OUT?
+
 
 '''
 for dic in forward_output:
@@ -127,4 +131,5 @@ for dic in forward_output:
 Notes:
 Quicker to store dictionary in sqlalchemy then use flask to access?
 Need to run scraper to get keep_copy for app.py?
+Function wrapper to add function attribute to be able to a call in app.py?
 """
