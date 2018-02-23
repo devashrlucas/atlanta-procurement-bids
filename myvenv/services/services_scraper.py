@@ -104,10 +104,22 @@ def get_info():
                                         #if 'a conflict or discrepancy between the information or documents' in str(entry):
                                                 #pass  
                                     keep_copy = [{key: value for key, value in enumerate(to_keep)}]
-                                    return keep_copy
+                                    get_info.keep_copy = keep_copy #function attribute
+                                    #return info.keep_copy
                                     #print keep_copy
-                                    #print '*******'                           
-forward_output = get_info()
+                                    #print '*******'
+#THIS TIMES OUT?
+get_info()
+print get_info.keep_copy
+
+'''
+for dic in forward_output:
+    for val in dic.values():
+        print(type(val))
+'''
+
+
+#print forward_output
 #json_object = json.dumps(forward_output)
 #json_object = json.loads(json_object)
 
