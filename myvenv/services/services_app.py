@@ -7,17 +7,17 @@ from flask import render_template
 
 import simplejson as json
 
-import services_scraper.py as ss
+from services_scraper import get_info
+
 
 
 app = Flask(__name__)
 
 @app.route('/')
 def post_solicitation():
-    if len(ss.forward) == 0:
-        abort(404)
-    else:
-        return jsonify(ss.forward)
+    got_info = get_info()
+    for item in got_info:
+        return jsonify(item)
 '''
     for item in ss.forward:
         for entry in item.iteritems():

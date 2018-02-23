@@ -67,7 +67,8 @@ f = open('services_urls.txt', 'r')
 urls = (line.strip() for line in f)
 
 
-def get_info(url):
+def get_info():
+    for url in urls:
         response = requests.get(url)
         html = response.content
         soup = BeautifulSoup(html, 'lxml')
@@ -103,15 +104,11 @@ def get_info(url):
                                                 re.sub('<[^>]*>', '', str(entry)))
                                         #if 'a conflict or discrepancy between the information or documents' in str(entry):
                                                 #pass  
-                                    get_info.keep_copy = [
+                                    keep_copy = [
                                         {key: value for key, value in enumerate(to_keep)}]
-
+                                    get_info.keep_copy = keep_copy
+                                    return keep_copy
 #get function attribute, correct output per URL (only returns one list per URL)
-for url in urls:
-    get_info(url)
-    forward = get_info.keep_copy
-    #print forward
-    #print get_info.keep_copy
 
 
 #print (get_info.keep_copy)  # THIS TIMES OUT?
