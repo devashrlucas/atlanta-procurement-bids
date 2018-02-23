@@ -103,14 +103,15 @@ def get_info(url):
                                                 re.sub('<[^>]*>', '', str(entry)))
                                         #if 'a conflict or discrepancy between the information or documents' in str(entry):
                                                 #pass  
-                                    get_info.keep_copy = [{key: value for key, value in enumerate(to_keep)}]
+                                    get_info.keep_copy = [
+                                        {key: value for key, value in enumerate(to_keep)}]
 
-                                    #print keep_copy
-                                    #print '*******'
-#function attribute
+#get function attribute, correct output per URL (only returns one list per URL)
 for url in urls:
     get_info(url)
-    print get_info.keep_copy
+    forward = get_info.keep_copy
+    #print forward
+    #print get_info.keep_copy
 
 
 #print (get_info.keep_copy)  # THIS TIMES OUT?

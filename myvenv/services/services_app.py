@@ -7,14 +7,19 @@ from flask import render_template
 
 import simplejson as json
 
-import services_scraper as ss
+import services_scraper.py as ss
 
 
 app = Flask(__name__)
 
 @app.route('/')
 def post_solicitation():
-    for item in ss.forward_output:
+    if len(ss.forward) == 0:
+        abort(404)
+    else:
+        return jsonify(ss.forward)
+'''
+    for item in ss.forward:
         for entry in item.iteritems():
             #subdict = subdict
             if len(entry) == 0:
@@ -23,8 +28,7 @@ def post_solicitation():
                 return jsonify(entry)
         #return render_template('services_template.html')
         #{key:value for key, value in ss.forward_output.iteritems()}
-
-
+'''
 
 @app.errorhandler(404)
 def not_found(error):
