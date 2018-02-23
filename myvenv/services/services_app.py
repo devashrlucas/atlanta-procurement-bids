@@ -7,7 +7,7 @@ from flask import render_template
 
 import simplejson as json
 
-from services_scraper import get_info
+from services_scraper import got_info
 
 
 
@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def post_solicitation():
-    got_info = get_info()
+    #got_info = get_info() #this works
     for item in got_info:
         return jsonify(item)
 '''

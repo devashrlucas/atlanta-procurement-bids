@@ -78,7 +78,7 @@ def get_info():
         for item in soup:
             to_keep = []
             keep_copy = {}
-            full_list = {}
+            full_list = []
             if isinstance(item, NavigableString):
                 pass
             for item in body:
@@ -106,12 +106,17 @@ def get_info():
                                                 #pass  
                                     keep_copy = [
                                         {key: value for key, value in enumerate(to_keep)}]
-                                    get_info.keep_copy = keep_copy
-                                    return keep_copy
-#get function attribute, correct output per URL (only returns one list per URL)
+                                    #get_info.keep_copy = keep_copy #function attribute?
+                                    full_list.append(keep_copy)
+                                    return full_list
+                                    '''
+                                    testing = ['123','234','546']
+                                    return testing
+                                    '''
 
 
-#print (get_info.keep_copy)  # THIS TIMES OUT?
+got_info = get_info()
+
 
 
 '''
