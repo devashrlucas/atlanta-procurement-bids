@@ -68,70 +68,61 @@ urls = (line.strip() for line in f)
 
 
 
-def get_info():
+def get_info(url):
     #global full_set
-    response = requests.get(url)
-    html = response.content
-    soup = BeautifulSoup(html, 'lxml')
-    body = soup.find('body')
-    divs = soup.find_all('div')
-    everything = soup.find()
-    for item in soup:
-        to_keep = []
-        keep_copy = {} 
-        if isinstance(item, NavigableString):
-            pass
-        for item in body:
-            if item.name == 'div':
-                for entry in item:
-                    if entry.name == 'div':
-                        if entry.get('class', '') == ['wrapper']:
-                                pass 
-                        for item in entry.findChildren(): #returns a list
-                            if item.name == 'div':
-                                for entry in item:
-                                    if entry.name == 'h1':
-                                                    to_keep.append(
-                                            re.sub('<[^>]*>', '', str(entry)))
-                                    if entry.name == 'p':
-                                        to_keep.append(
-                                            re.sub('<[^>]*>', '', str(entry)))
-                                    if entry.name == 'h2':
-                                        to_keep.append(
-                                            re.sub('<[^>]*>', '', str(entry)))
-                                    if entry.name == 'ul':
-                                        to_keep.append(
-                                            re.sub('<[^>]*>', '', str(entry)))
-                                    #if 'a conflict or discrepancy between the information or documents' in str(entry):
-                                            #pass  
-                                keep_copy = {key: value for key, value in enumerate(to_keep)}
-                                #get_info.keep_copy = keep_copy #function attribute?
-                                get_info.full_set = {}
-                                get_info.full_set.update(keep_copy)
-                                #get_info.full_set
-                        
-                                '''
-                                testing = ['123','234','546']
-                                return testing
+    for url in urls:
+        response = requests.get(url)
+        html = response.content
+        soup = BeautifulSoup(html, 'lxml')
+        body = soup.find('body')
+        divs = soup.find_all('div')
+        for item in soup:
+            to_keep = []
+            keep_copy = {} 
+            if isinstance(item, NavigableString):
+                pass
+            for item in body:
+                if item.name == 'div':
+                    for entry in item:
+                        if entry.name == 'div':
+                            if entry.get('class', '') == ['wrapper']:
+                                    pass 
+                            for item in entry.findChildren(): #returns a list
+                                if item.name == 'div':
+                                    for entry in item:
+                                        if entry.name == 'h1':
+                                                        to_keep.append(
+                                                re.sub('<[^>]*>', '', str(entry)))
+                                        if entry.name == 'p':
+                                            to_keep.append(
+                                                re.sub('<[^>]*>', '', str(entry)))
+                                        if entry.name == 'h2':
+                                            to_keep.append(
+                                                re.sub('<[^>]*>', '', str(entry)))
+                                        if entry.name == 'ul':
+                                            to_keep.append(
+                                                re.sub('<[^>]*>', '', str(entry)))
+                                        #if 'a conflict or discrepancy between the information or documents' in str(entry):
+                                                #pass  
+                                    keep_copy = {key: value for key, value in enumerate(to_keep)}
+                                    #get_info.keep_copy = keep_copy #function attribute?
+                                    get_info.full_set = {}
+                                    get_info.full_set.update(keep_copy)
+                                    return get_info.full_set
+                                    #get_info.full_set
+                            
                                     '''
+                                    testing = ['123','234','546']
+                                    return testing
+                                        '''
 
-
+'''
 for url in urls:
     get_info()
     print get_info.full_set
-    #print get_info.full_set
+'''   
 
 
-'''
-for dic in forward_output:
-    for val in dic.values():
-        print(type(val))
-'''
-
-
-#print forward_output
-#json_object = json.dumps(forward_output)
-#json_object = json.loads(json_object)
 
 """
 Notes:

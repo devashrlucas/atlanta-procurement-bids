@@ -5,29 +5,35 @@ from flask import make_response
 from flask import abort
 from flask import render_template
 
-
-
 import simplejson as json
 
-from services_scraper import got_info
+import services_scraper as ss
 
+'''
 import werkzeug
 import logging
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
-
+'''
 
 
 app = Flask(__name__)
 
+
+@app.context_processor
+def ss_func(): 
+    for url in ss.urls:
+        forward = ss.get_info(url)
+        forward
+        return dict(forward)
+
+
 @app.route('/services', methods=['GET','POST'])
 def post_solicitation():
-    full_array = []
-    for item in got_info:
-        full_array = [item]
-    #got_info = get_info() #this works
-        #return jsonify(full_array)
-        return render_template('services_template.html', full_array = full_array)
+    #return jsonify('connected')
+    #return jsonify(ss.get_info.full_set.full_set)
+    return render_template('services_template.html')
+        
     
 '''
     for item in ss.forward:
