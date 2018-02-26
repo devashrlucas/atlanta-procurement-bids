@@ -67,7 +67,9 @@ f = open('services_urls.txt', 'r')
 urls = (line.strip() for line in f)
 
 
+
 def get_info():
+    global full_set
     for url in urls:
         response = requests.get(url)
         html = response.content
@@ -77,8 +79,7 @@ def get_info():
         everything = soup.find()
         for item in soup:
             to_keep = []
-            keep_copy = {}
-            full_list = []
+            keep_copy = {} 
             if isinstance(item, NavigableString):
                 pass
             for item in body:
@@ -104,19 +105,19 @@ def get_info():
                                                 re.sub('<[^>]*>', '', str(entry)))
                                         #if 'a conflict or discrepancy between the information or documents' in str(entry):
                                                 #pass  
-                                    keep_copy = [
-                                        {key: value for key, value in enumerate(to_keep)}]
+                                    keep_copy = {key: value for key, value in enumerate(to_keep)}
                                     #get_info.keep_copy = keep_copy #function attribute?
-                                    full_list.append(keep_copy)
-                                    return full_list
+                                    get_info.full_set = {}
+                                    get_info.full_set.update(keep_copy)
+                                    return get_info.full_set
+                            
                                     '''
                                     testing = ['123','234','546']
                                     return testing
                                     '''
 
-
-got_info = get_info()
-
+get_info()
+#print get_info.full_set
 
 
 '''

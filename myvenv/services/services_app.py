@@ -5,11 +5,16 @@ from flask import make_response
 from flask import abort
 from flask import render_template
 
+
+
 import simplejson as json
 
-import itertools
-
 from services_scraper import got_info
+
+import werkzeug
+import logging
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 
 
