@@ -1,9 +1,26 @@
 <!DOCTYPE html>
 
-from services_scraper.format import get_info
-services_template.render(get_info)
+{% for item in full_array %}
+    <p>{{ item }}</p>
+{% endfor %}
 
 
+<!--
+python_dir = '/Users/Ashley-Macbook-Pro/Developer/Projects_Professonal/Dev_GitHub_Public/atlanta-procurement-bids/myvenv/services/'
+loader = jinja2.FileSystemLoader(python_dir)
+environment = jinja2.Environment(loader=loader)
+
+from services_scraper import got_info
+services_template.render(got_info)
+-->
+
+<!--
+template = Template('Hello {{ name }}!') 
+template.render(name='John Doe')
+-->
+
+
+<!--
 <html>
     <head>
         <title> Current Solicitations </title>
@@ -24,5 +41,25 @@ services_template.render(get_info)
         </table>        
     </body>
 </html>
+-->
+<html>
 
- 
+    <head>
+        <title> Current Solicitations </title>
+    </head>
+    <body>
+        <table>
+            {% for item in get_info %}
+            <tr>
+                <td>{{ item }}</td>
+            </tr>
+            {% for item in get_info %}
+            <tr>
+                { for key, value in item }
+                <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

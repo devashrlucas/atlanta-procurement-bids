@@ -7,17 +7,23 @@ from flask import render_template
 
 import simplejson as json
 
+import itertools
+
 from services_scraper import got_info
 
 
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/services', methods=['GET','POST'])
 def post_solicitation():
-    #got_info = get_info() #this works
+    full_array = []
     for item in got_info:
-        return jsonify(item)
+        full_array = [item]
+    #got_info = get_info() #this works
+        #return jsonify(full_array)
+        return render_template('services_template.html', full_array = full_array)
+    
 '''
     for item in ss.forward:
         for entry in item.iteritems():
