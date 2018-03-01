@@ -7,8 +7,6 @@ from flask import render_template
 from flask import Blueprint
 
 
-import simplejson as json
-
 import services_scraper as ss
 
 '''
@@ -26,10 +24,10 @@ app = Flask(__name__)
 @app.route('/services', methods=['GET', 'POST'])
 def index():
     #return jsonify('connected')
-    #return jsonify(ss.get_info.full_set.full_set)
     for url in ss.urls:
         ss.get_info(url)
         return jsonify(ss.full_set)
+        #return jsonify('connected')
     #return render_template('services_template.html')
 
 '''
