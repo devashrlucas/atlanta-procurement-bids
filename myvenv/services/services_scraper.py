@@ -75,7 +75,6 @@ def get_info(url):
         html = response.content
         soup = BeautifulSoup(html, 'lxml')
         body = soup.find('body')
-        divs = soup.find_all('div')
         for item in soup:
             to_keep = []
             keep_copy = {} 

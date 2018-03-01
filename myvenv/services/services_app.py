@@ -23,8 +23,8 @@ app = Flask(__name__)
 @app.context_processor
 def ss_func(): 
     for url in ss.urls:
-        forward = ss.get_info(url)
-        forward
+        ss.get_info(url)
+        forward = ss.get_info.full_set
         return dict(forward)
 
 
