@@ -105,10 +105,15 @@ def get_info(url):
                                     keep_copy = {key: value for key, value in enumerate(to_keep)}
                                     #get_info.keep_copy = keep_copy #function attribute?
                                     global full_set
+                                    global master_list
                                     full_set = []
+                                    master_list = []
                                     full_set.append(keep_copy)
+                                master_list.append(full_set)
                                     #get_info.full_set
-                            
+
+
+
 '''
 testing = ['123','234','546']
 return testing

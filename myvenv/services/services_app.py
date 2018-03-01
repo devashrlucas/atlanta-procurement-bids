@@ -26,7 +26,8 @@ def index():
     #return jsonify('connected')
     for url in ss.urls:
         ss.get_info(url)
-        return jsonify(ss.full_set)
+        return jsonify(ss.master_list)
+        #return jsonify(ss.full_set)
         #return jsonify('connected')
     #return render_template('services_template.html')
 
