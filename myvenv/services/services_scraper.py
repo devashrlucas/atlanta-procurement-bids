@@ -104,21 +104,20 @@ def get_info(url):
                                                 #pass  
                                     keep_copy = {key: value for key, value in enumerate(to_keep)}
                                     #get_info.keep_copy = keep_copy #function attribute?
-                                    get_info.full_set = {}
-                                    get_info.full_set.update(keep_copy)
-                                    return get_info.full_set
+                                    global full_set
+                                    full_set = []
+                                    full_set.append(keep_copy)
                                     #get_info.full_set
                             
-                                    '''
-                                    testing = ['123','234','546']
-                                    return testing
-                                        '''
-
 '''
-for url in urls:
-    get_info()
-    print get_info.full_set
-'''   
+testing = ['123','234','546']
+return testing
+
+
+#for url in urls:  #this works correctly
+    #get_info(url)
+    #print full_set
+ '''
 
 
 

@@ -29,7 +29,7 @@ def index():
     #return jsonify(ss.get_info.full_set.full_set)
     for url in ss.urls:
         ss.get_info(url)
-    return jsonify(ss.get_info.full_set)
+        return jsonify(ss.full_set)
     #return render_template('services_template.html')
 
 '''
