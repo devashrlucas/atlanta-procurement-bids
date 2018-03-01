@@ -24,8 +24,7 @@ app = Flask(__name__)
 def ss_func(): 
     for url in ss.urls:
         ss.get_info(url)
-        forward = ss.get_info.full_set
-        return dict(forward)
+        return dict(forward=ss.get_info.full_set)
 
 
 @app.route('/services', methods=['GET','POST'])

@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 
-
 <html>
 <head>
 </head>
     <body>
         <div class="container">
             {% block content %} 
-                {% for item in forward %}
-                    <p>{{ item }}</p>
+                {% for item in forward.iteritems() %}
+                    <p>{{ item['i'] }}</p>
                 {% endfor %}
             {% endblock %}
         </div>
