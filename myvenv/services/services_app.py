@@ -20,15 +20,19 @@ log.setLevel(logging.ERROR)
 
 
 app = Flask(__name__)
-scraped = Blueprint("scraped", __name__, template_folder='templates')
+#scraped = Blueprint("scraped", __name__, template_folder='templates')
 
 
-@scraped.route('/services', methods=['GET', 'POST'])
-def post_solicitation():
+@app.route('/services', methods=['GET', 'POST'])
+def index():
     #return jsonify('connected')
     #return jsonify(ss.get_info.full_set.full_set)
-    return render_template('services_template.html')
+    for url in ss.urls:
+        ss.get_info(url)
+    return jsonify(ss.get_info.full_set)
+    #return render_template('services_template.html')
 
+'''
 @scraped.context_processor
 def ss_func(): 
     def get_urls():
@@ -36,7 +40,7 @@ def ss_func():
             ss.get_info(url)
             return ss.get_info.full_set
     return dict(get_urls=get_urls)
-
+'''
 
         
     
