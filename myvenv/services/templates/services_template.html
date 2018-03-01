@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 
 <html>
-<head>
-</head>
-    <body>
-        <div class="container">
-            {% block content %} 
-                {% for item in forward.iteritems() %}
-                    <p>{{ item['i'] }}</p>
-                {% endfor %}
-            {% endblock %}
-        </div>
-    </body>
+    <head>
+        <title> Current Solicitations </title>
+    </head>
+        <body>
+            <div class="container">
+                {% block content %} 
+                     {% for item in ss_func() %}
+                        <p>{{ item }}</p> 
+                    {% endfor %}
+                {% endblock %}
+            </div>
+        </body>
 </html>
 
-
-
-
 <!--
+
+
+
+
+
 python_dir = '/Users/Ashley-Macbook-Pro/Developer/Projects_Professonal/Dev_GitHub_Public/atlanta-procurement-bids/myvenv/services/'
 loader = jinja2.FileSystemLoader(python_dir)
 environment = jinja2.Environment(loader=loader)
@@ -53,7 +56,7 @@ template.render(name='John Doe')
         </table>        
     </body>
 </html>
--->
+
 <html>
 
     <head>
@@ -75,3 +78,4 @@ template.render(name='John Doe')
         </table>
     </body>
 </html>
+-->

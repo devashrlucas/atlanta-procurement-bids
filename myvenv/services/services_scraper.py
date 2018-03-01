@@ -70,7 +70,6 @@ urls = (line.strip() for line in f)
 
 def get_info(url):
     #global full_set
-    for url in urls:
         response = requests.get(url)
         html = response.content
         soup = BeautifulSoup(html, 'lxml')
