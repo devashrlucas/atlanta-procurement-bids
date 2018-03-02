@@ -13,7 +13,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import StaleElementReferenceException
 
 
-'''   DONE --- LEAVE THIS ALONE
+
 url = 'http://procurement.atlantaga.gov/solicitations/'
 
 
@@ -36,7 +36,6 @@ except TimeoutException:
     print "Failed"
 
 
-#box = driver.find_element_by_xpath('//*[@id="project-more-info-link"]')
 box = driver.find_element_by_xpath('//*[@id="project-solicitations"]')
 options = box.find_elements_by_tag_name('option')
 delay = 20
@@ -57,7 +56,7 @@ for option in options:
 
 
 # MAY HAVE TO CHANGE THIS LATER
-with open('services_urls.txt', 'w+') as f:
+with open('services_urls.txt', 'w') as f:
     for url in LinkList:
         f.write('\n'.join(LinkList))
     f.close()
@@ -65,8 +64,8 @@ with open('services_urls.txt', 'w+') as f:
 
 f = open('services_urls.txt', 'r')
 urls = (line.strip() for line in f)
-
-
+'''
+urls = (line.strip() for line in f)
 
 def get_info(url):
     response = requests.get(url)
@@ -84,7 +83,7 @@ def get_info(url):
                     if entry.name == 'div':
                         if entry.get('class', '') == ['wrapper']:
                                 pass 
-                        for item in entry.findChildren(): #returns a list
+                        for item in entry.findChildren():
                             if item.name == 'div':
                                 for entry in item:
                                     if entry.name == 'h1':
@@ -99,35 +98,11 @@ def get_info(url):
                                     if entry.name == 'ul':
                                         to_keep.append(
                                             re.sub('<[^>]*>', '', str(entry)))
-                                    #if 'a conflict or discrepancy between the information or documents' in str(entry):
-                                            #pass  
                                 global master_list
                                 global full_set
                                 master_list = []
                                 full_set = []
                                 keep_copy = {key: value for key, value in enumerate(to_keep)}
-                                #get_info.keep_copy = keep_copy #function attribute?
-    full_set.append(keep_copy) #correct level for single output her listing but only shows one listing per page
-    master_list.append(full_set) #correct level for single output her listing but only shows one listing per page
-                                #get_info.full_set
-
-
-
-'''
-testing = ['123','234','546']
-return testing
-
-
-#for url in urls:  #this works correctly
-    #get_info(url)
-    #print full_set
- '''
-
-
-
-"""
-Notes:
-Quicker to store dictionary in sqlalchemy then use flask to access?
-Need to run scraper to get keep_copy for app.py?
-Function wrapper to add function attribute to be able to a call in app.py?
-"""
+    full_set.append(keep_copy)
+    master_list.append(full_set) 
+                                
