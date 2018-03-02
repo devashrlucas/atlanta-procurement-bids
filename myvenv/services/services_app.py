@@ -17,7 +17,7 @@ import logging
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 '''
-
+master_list = []
 
 app = Flask(__name__)
 #scraped = Blueprint("scraped", __name__, template_folder='templates')
@@ -28,8 +28,9 @@ def index():
     #return jsonify('connected')
     for url in ss.urls:
         ss.get_info(url)
-        return jsonify(ss.master_list)
-        #return jsonify(ss.full_set)
+        master_list.append(ss.full_set)
+        #return jsonify(ss.master_list)
+        return jsonify(master_list)
         #return jsonify('connected')
     #return render_template('services_template.html')
 
