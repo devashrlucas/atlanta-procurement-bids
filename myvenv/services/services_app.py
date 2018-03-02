@@ -4,7 +4,9 @@ from flask import Flask, jsonify
 from flask import make_response
 from flask import abort
 from flask import render_template
-from flask import Blueprint
+#from flask import Blueprint
+
+
 
 
 import services_scraper as ss
@@ -21,7 +23,7 @@ app = Flask(__name__)
 #scraped = Blueprint("scraped", __name__, template_folder='templates')
 
 
-@app.route('/services', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
     #return jsonify('connected')
     for url in ss.urls:
