@@ -20,7 +20,7 @@ url = 'http://procurement.atlantaga.gov/solicitations/'
 driver = webdriver.Chrome()
 
 driver.get(url)
-delay = 15
+delay = 20
 
 
 try:
@@ -33,7 +33,7 @@ try:
     element = WebDriverWait(driver, delay).until(EC.visibility_of_element_located(
         (By.XPATH, '/html/body/div[1]/div/div[2]/p[4]/select/option[2]'))).click()
 except TimeoutException:
-    print "Failed"
+    print "Failed: Timeout"
 
 
 box = driver.find_element_by_xpath('//*[@id="project-solicitations"]')
@@ -60,12 +60,9 @@ with open('services_urls.txt', 'w') as f:
     for url in LinkList:
         f.write('\n'.join(LinkList))
     f.close()
-'''
-
 f = open('services_urls.txt', 'r')
 urls = (line.strip() for line in f)
-'''
-urls = (line.strip() for line in f)
+
 
 def get_info(url):
     response = requests.get(url)

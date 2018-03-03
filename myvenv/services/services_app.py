@@ -1,6 +1,6 @@
 #!flask/bin/python
 #coding=utf-8
-from flask import Flask, jsonify
+from flask import Flask, jsonify, make_response
 
 
 import services_scraper as ss
@@ -8,8 +8,6 @@ import services_scraper as ss
 
 
 app = Flask(__name__)
-
-
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
