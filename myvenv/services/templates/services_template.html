@@ -8,7 +8,11 @@
             <div class="container">
                 {% block content %} 
                      {% for dict_item in parent_dict %} 
-                        <h2>Value: {{dict_item}}</h2> 
+                        {% for item in dict_item %}
+                            {% for key in item.items() %}
+                                <h2>Key: {{key[1]}}</h2>
+                            {% endfor %}
+                        {% endfor %} 
                     {% endfor %}
                 {% endblock %}
             </div>

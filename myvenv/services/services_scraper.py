@@ -84,17 +84,17 @@ def get_info(url):
                             if item.name == 'div':
                                 for entry in item:
                                     if entry.name == 'h1':
-                                                    to_keep.append(
-                                            re.sub('<[^>]*>', '', str(entry)))
+                                        to_keep.append(
+                                            re.sub('<[^>]*>', '', str(entry)).decode('utf-8').strip())
                                     if entry.name == 'p':
                                         to_keep.append(
-                                            re.sub('<[^>]*>', '', str(entry)))
+                                            re.sub('<[^>]*>', '', str(entry)).decode('utf-8').strip())
                                     if entry.name == 'h2':
                                         to_keep.append(
-                                            re.sub('<[^>]*>', '', str(entry)))
+                                            re.sub('<[^>]*>', '', str(entry)).decode('utf-8').strip())
                                     if entry.name == 'ul':
                                         to_keep.append(
-                                            re.sub('<[^>]*>', '', str(entry)))
+                                            re.sub('<[^>]*>', '', str(entry)).decode('utf-8').strip())
                                 global master_list
                                 global full_set
                                 master_list = []
