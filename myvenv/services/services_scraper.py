@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 from bs4 import BeautifulSoup, NavigableString
 import requests
-import simplejson as json
 import re
 
 from selenium import webdriver
@@ -55,7 +54,6 @@ for option in options:
         pass
 
 
-# MAY HAVE TO CHANGE THIS LATER
 with open('services_urls.txt', 'w') as f:
     for url in LinkList:
         f.write('\n'.join(LinkList))
@@ -103,4 +101,4 @@ def get_info(url):
                                 keep_copy = {key: value for key, value in enumerate(to_keep)}
     full_set.append(keep_copy)
     master_list.append(full_set) 
-                                
+                          
