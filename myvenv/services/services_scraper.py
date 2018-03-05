@@ -72,6 +72,7 @@ def get_info(url):
     for item in soup:
         to_keep = []
         keep_copy = {} 
+        to_keep.insert(0, url)
         if isinstance(item, NavigableString):
             pass
         for item in body:

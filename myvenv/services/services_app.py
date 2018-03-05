@@ -19,7 +19,7 @@ def for_template():
         #keys = range(0, len(ss.full_set))
         values = ss.full_set
         master_list.append(ss.full_set)
-        parent_dict = {key:value for key, value in enumerate(values)}
+        #parent_dict = {key:value for key, value in enumerate(values)}
         return (dict(parent_dict=master_list))
         #parent_dict = dict(zip(keys, values))
         #return jsonify(master_list)
