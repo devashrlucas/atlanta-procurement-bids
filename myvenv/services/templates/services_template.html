@@ -7,8 +7,8 @@
         <body>
             <div class="container">
                 {% block content %} 
-                     {% for item in ss_func() %}
-                        <p>{{ item['0'] }}</p> 
+                     {% for dict_item in parent_dict %} 
+                        <h2>Value: {{dict_item}}</h2> 
                     {% endfor %}
                 {% endblock %}
             </div>
