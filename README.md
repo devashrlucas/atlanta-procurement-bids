@@ -17,10 +17,11 @@ $ cd /path/to/atlanta-procurement-bids-master
 
 * Python 2.7
 * Selenium
-* [ChromeDriver] (https://sites.google.com/a/chromium.org/chromedriver/) for Selenium
+* [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/) for Selenium
 * BeautifulSoup
 * Requests
 * Flask
+
 
 
 ### How To Use
