@@ -1,8 +1,8 @@
 # Atlanta Procurement Bids (Services) Viewer
 
-This project can be used as a quicker way to view all of the services solicitations available on the Department of Procurement’s website for the City of Atlanta. One solicitation is shown per page. Refreshing the page will show the next solicitation from the “Choose a solicitation” dropdown menu.
+This web application can be used as a quicker way to view all of the services solicitations available on the Department of Procurement’s website for the City of Atlanta. One solicitation is shown per page. Refreshing the page will show the next solicitation from the “Choose a solicitation” dropdown menu.
 
-As of right now, there is no way to go back and view previously seen solications. If you see a solication that you would like to look at later, please be sure to save the url for that solication found above the title of the solicitation. Any required bid documents will need to be downloaded from the original url as well.
+As of right now, there is no way to go back and view previously seen solications. If you see a solicitation that you would like to look at later, please be sure to save the url for that solicitation found above the title of the solicitation. Any required bid documents will need to be downloaded from the original url as well.
 
 
 ## Getting Started
@@ -13,10 +13,15 @@ Download the ZIP file from the repository and unzip the files. In a command-line
 $ cd /path/to/atlanta-procurement-bids-master
 ```
 
-### Requirements
+### Requirements Overview
 
 * Python 2.7
+* Selenium
 * [ChromeDriver] (https://sites.google.com/a/chromium.org/chromedriver/) for Selenium
+* BeautifulSoup
+* Requests
+* Flask
+
 
 ### How To Use
 
@@ -47,9 +52,20 @@ $ export FLASK_DEBUG=0
 $ flask run
 ```
 
-Once the app is running on your local server (check command-line shell), please visit [http://localhost:5000/] (http://localhost:5000/) in the browser of your choice. Please leave the app running on your local server while you view the solicitations.
+Once the app is running on your local server (check command-line shell), please visit [http://localhost:5000/] (http://localhost:5000/) in the browser of your choice. Please leave ChromeDriver open as well as the app running on your local server while you view the solicitations.
 
 To quit running the app on your local server, press CTRL+C in the command-line shell.
 
+Please note: each time the Flask app is ran, the file containing the services solicitation URLs gets overwritten. This app only returns the lastest list of viewable soliciations. 
+
+## Built With
+
+* Selenium: web browser automation
+* BeautifulSoup: HTML and XML parsing
+* Flask: web application
+
+## License
+
+This project is licensed under the MIT License. Refer to the [LICENSE.md](LICENSE.md) file for full details.
 
 

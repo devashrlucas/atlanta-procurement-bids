@@ -14,7 +14,6 @@ def for_template():
     for url in ss.urls:
         master_list = []
         ss.get_info(url)
-        values = ss.full_set
         master_list.append(ss.full_set)
         return (dict(parent_dict=master_list))
 
