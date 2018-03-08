@@ -53,7 +53,7 @@ $ export FLASK_DEBUG=0
 $ flask run
 ```
 
-Once the app is running on your local server (check command-line shell), please visit [http://localhost:5000/] (http://localhost:5000/) in the browser of your choice. Please leave ChromeDriver open as well as the app running on your local server while you view the solicitations.
+Once the app is running on your local server (check command-line shell), please visit (http://localhost:5000/) in the browser of your choice. Please leave ChromeDriver open as well as the app running on your local server while you view the solicitations.
 
 To quit running the app on your local server, press CTRL+C in the command-line shell.
 
